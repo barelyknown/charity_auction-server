@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: charity_auction-server_development
+  host: localhost
+
+test:
+  <<: *default
+  database: charity_auction-server_test
+  host: localhost
+
+production:
+  url: <%= ENV['DATABASE_URL'] %>
