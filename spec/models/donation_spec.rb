@@ -82,4 +82,6 @@ RSpec.describe Donation do
   it "has a nil fulfillment_type after initialization" do
     expect(subject.fulfillment_type).to be_nil
   end
+
+  it { is_expected.to have_many :bids }
 end
