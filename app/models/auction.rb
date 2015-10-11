@@ -8,6 +8,8 @@ class Auction < ActiveRecord::Base
 
   has_many :auction_admins
 
+  has_many :donations
+
   def _ends_at_after_starts_at
     return unless starts_at && ends_at
 
