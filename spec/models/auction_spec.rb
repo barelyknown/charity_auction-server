@@ -13,6 +13,10 @@ RSpec.describe Auction do
     it { is_expected.to have_attribute :donation_window_ends_at }
   end
 
+  describe "relationships" do
+    it { is_expected.to have_many :auction_admins }
+  end
+
   describe "validations" do
     it "ends_at is after starts_at" do
       subject.ends_at = DateTime.new(2015,10,1,0,0)
@@ -39,5 +43,9 @@ RSpec.describe Auction do
       subject.valid?
       expect(subject.errors[:time_zone_id]).to be_empty
     end
+  end
+
+  it "has a valid factory" do
+    expect(FactoryGirl.create(:auction)).to be_persisted
   end
 end
