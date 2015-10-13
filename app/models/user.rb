@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
 
   has_many :bids, foreign_key: :bidder_id
 
+  has_many :memberships
+
   validates :name, presence: true
 
   validates :mobile_phone_number, presence: true, uniqueness: true
