@@ -18,6 +18,12 @@ RSpec.describe User do
     expect(duplicate.errors[:email_address]).to include "has already been taken"
   end
 
+  it "persists a password digest based on the password that can be used for authentication" do
+    password = "password"
+    subject = FactoryGirl.create(:user, password: password)
+    expect(subject.authenticate(password)).to eq subject
+  end
+
   it { is_expected.to have_many :auction_admins }
 
   it { is_expected.to have_many :donations }
