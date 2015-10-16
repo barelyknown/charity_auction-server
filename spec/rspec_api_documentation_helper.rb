@@ -1,7 +1,5 @@
-require 'rspec_api_documentation'
 require "rspec_api_documentation/dsl"
 
-# Values listed are the default values
 RspecApiDocumentation.configure do |config|
   # Set the application that Rack::Test uses
   config.app = Rails.application
