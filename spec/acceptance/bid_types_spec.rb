@@ -21,7 +21,7 @@ RSpec.resource "Bid Types" do
       BidType.first.id.to_s
     end
 
-    example_request "GET /v1/bid-types/:bid_type_id" do
+    example_request "GET /v1/bid-types/:id" do
       expect(status).to eq 200
     end
   end

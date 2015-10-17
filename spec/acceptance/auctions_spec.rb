@@ -119,7 +119,7 @@ RSpec.resource "Auctions" do
       "Scary Fundraiser"
     end
 
-    example_request "PATCH /v1/auctions/:auction_id" do
+    example_request "PATCH /v1/auctions/:id" do
       expect(status).to eq 200
       expect(JSON.parse(response_body)["data"]["attributes"]["name"]).to eq public_send("name")
     end
@@ -137,14 +137,14 @@ RSpec.resource "Auctions" do
 
   get "/v1/auctions/:auction_id" do
     include_context "persisted auction"
-    example_request "GET /v1/auctions/:auction_id" do
+    example_request "GET /v1/auctions/:id" do
       expect(status).to eq 200
     end
   end
 
   delete "/v1/auctions/:auction_id" do
     include_context "persisted auction"
-    example_request "DELETE /v1/auctions/:auction_id" do
+    example_request "DELETE /v1/auctions/:id" do
       expect(status).to eq 204
     end
   end

@@ -8,5 +8,14 @@ module V1
     attribute :donation_window_ends_at
 
     has_one :organization
+
+    has_many :donations
+
+    class << self
+      def creatable_fields(context)
+        super - [:donations]
+      end
+      alias_method :updatable_fields, :creatable_fields
+    end
   end
 end
