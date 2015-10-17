@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     jsonapi_resources :memberships
     jsonapi_resources :bid_types
     jsonapi_resources :donation_categories
+    jsonapi_resources :auctions
   end
 end
