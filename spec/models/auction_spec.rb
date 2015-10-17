@@ -14,8 +14,6 @@ RSpec.describe Auction do
   end
 
   describe "relationships" do
-    it { is_expected.to have_many :auction_admins }
-
     it { is_expected.to have_many :donations }
 
     it { is_expected.to belong_to :organization }
