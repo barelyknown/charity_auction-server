@@ -21,8 +21,5 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "rspec_api_documentation"
   gem "apitome"
-end
-
-group :test do
   gem "shoulda-matchers", "~> 3.0"
 end
