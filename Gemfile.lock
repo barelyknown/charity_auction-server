@@ -73,6 +73,7 @@ GEM
     pg (0.18.3)
     puma (2.13.4)
     rack (1.6.4)
+    rack-cors (0.2.9)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.4)
@@ -154,6 +155,7 @@ DEPENDENCIES
   jsonapi-resources (>= 0.6.0)
   pg
   puma
+  rack-cors
   rails (= 4.2.4)
   rspec-rails (~> 3.0)
   rspec_api_documentation
