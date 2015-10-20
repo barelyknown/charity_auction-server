@@ -3,6 +3,8 @@ class Donation < ActiveRecord::Base
 
   belongs_to :bid_type
 
+  belongs_to :donation_category
+
   belongs_to :donor, class_name: "User"
 
   has_many :bids

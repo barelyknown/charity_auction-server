@@ -16,6 +16,8 @@ RSpec.describe Donation do
 
   it { is_expected.to belong_to :bid_type }
 
+  it { is_expected.to belong_to :donation_category }
+
   ["auction", "donor"].each do |required_relationship|
     it { is_expected.to belong_to required_relationship }
 

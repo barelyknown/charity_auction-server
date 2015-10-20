@@ -14,6 +14,7 @@ module V1
         :admin_follow_up_needed,
         :fulfillment_type,
         :bid_type,
+        :donation_category,
         :auction,
         :donor
       ].sort

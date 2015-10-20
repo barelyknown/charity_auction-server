@@ -54,6 +54,10 @@ RSpec.resource "Donations" do
       The type of bid that will be conducted for this item.
     DESC
 
+    parameter "donation-category", <<-DESC, scope: :relationships
+      The type of the donation category.
+    DESC
+
     parameter "auction", <<-DESC, scope: :relationships
       The auction to which this donation is made.
     DESC
@@ -69,6 +73,7 @@ RSpec.resource "Donations" do
     before do
       CharityAuctionServer::Application.load_tasks
       Rake::Task["seed:bid_types"].execute
+      Rake::Task["seed:donation_categories"].execute
     end
 
     let "title" do
@@ -116,6 +121,15 @@ RSpec.resource "Donations" do
         data: {
           id: BidType.first.id.to_s,
           type: "bid-types"
+        }
+      }
+    end
+
+    let "donation-category" do
+      {
+        data: {
+          id: DonationCategory.first.id.to_s,
+          type: "donation-categories"
         }
       }
     end

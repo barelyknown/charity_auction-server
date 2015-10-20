@@ -13,5 +13,6 @@ module V1
     has_one :bid_type
     has_one :auction
     has_one :donor
+    has_one :donation_category
   end
 end
