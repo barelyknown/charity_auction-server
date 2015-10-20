@@ -14,7 +14,7 @@ RSpec.describe Membership do
     expect(subject.errors[:user]).to include "cannot be changed"
   end
 
-  it "validates that the user has not changed" do
+  it "validates that the organization has not changed" do
     subject = FactoryGirl.create(:membership)
     subject.organization = Organization.new
     subject.valid?
