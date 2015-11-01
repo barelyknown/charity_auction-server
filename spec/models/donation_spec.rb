@@ -18,7 +18,9 @@ RSpec.describe Donation do
 
   it { is_expected.to belong_to :donation_category }
 
-  ["auction", "donor"].each do |required_relationship|
+  it { is_expected.to have_many :donation_donors }
+
+  ["auction"].each do |required_relationship|
     it { is_expected.to belong_to required_relationship }
 
     it { is_expected.to validate_presence_of required_relationship }

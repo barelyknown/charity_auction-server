@@ -61,10 +61,6 @@ RSpec.resource "Donations" do
     parameter "auction", <<-DESC, scope: :relationships
       The auction to which this donation is made.
     DESC
-
-    parameter "donor", <<-DESC, scope: :relationships
-      The user to which the donation belongs.
-    DESC
   end
 
   post "/v1/donations" do
@@ -130,19 +126,6 @@ RSpec.resource "Donations" do
         data: {
           id: DonationCategory.first.id.to_s,
           type: "donation-categories"
-        }
-      }
-    end
-
-    let! :persisted_user do
-      FactoryGirl.create(:user)
-    end
-
-    let "donor" do
-      {
-        data: {
-          id: persisted_user.id.to_s,
-          type: "users"
         }
       }
     end

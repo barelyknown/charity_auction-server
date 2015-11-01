@@ -26,7 +26,7 @@ RSpec.describe User do
     expect(subject.authenticate(password)).to eq subject
   end
 
-  it { is_expected.to have_many :donations }
-
   it { is_expected.to have_many :memberships }
+
+  it { is_expected.to have_many :donors }
 end

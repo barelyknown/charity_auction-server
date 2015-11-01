@@ -9,5 +9,7 @@ Rails.application.routes.draw do
     jsonapi_resources :donation_categories
     jsonapi_resources :auctions
     jsonapi_resources :donations
+    jsonapi_resources :donors
+    jsonapi_resources :donation_donors
   end
 end

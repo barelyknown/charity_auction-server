@@ -12,7 +12,16 @@ module V1
     attribute :fulfillment_type
     has_one :bid_type
     has_one :auction
-    has_one :donor
     has_one :donation_category
+    has_many :donation_donors
+
+    class << self
+      def creatable_fields(context)
+        super - [:donation_donors]
+      end
+
+      alias_method :updatable_fields, :creatable_fields
+    end
+
   end
 end

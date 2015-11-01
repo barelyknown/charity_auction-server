@@ -1,8 +1,10 @@
 class Auction < ActiveRecord::Base
 
+  belongs_to :organization
+
   has_many :donations
 
-  belongs_to :organization
+  has_many :donors
 
   validate :_starts_at_after_donation_window_ends_at
 

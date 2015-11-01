@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020041941) do
+ActiveRecord::Schema.define(version: 20151101231937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,13 +69,22 @@ ActiveRecord::Schema.define(version: 20151020041941) do
 
   add_index "donation_categories", ["name"], name: "index_donation_categories_on_name", unique: true, using: :btree
 
+  create_table "donation_donors", force: :cascade do |t|
+    t.integer  "donation_id"
+    t.integer  "donor_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "donation_donors", ["donation_id"], name: "index_donation_donors_on_donation_id", using: :btree
+  add_index "donation_donors", ["donor_id"], name: "index_donation_donors_on_donor_id", using: :btree
+
   create_table "donations", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "quantity"
     t.integer  "auction_id",                                  null: false
     t.integer  "bid_type_id"
-    t.integer  "donor_id",                                    null: false
     t.datetime "redemption_window_starts_at"
     t.datetime "redemption_window_ends_at"
     t.integer  "estimated_value_amount"
@@ -91,7 +100,16 @@ ActiveRecord::Schema.define(version: 20151020041941) do
   add_index "donations", ["auction_id"], name: "index_donations_on_auction_id", using: :btree
   add_index "donations", ["bid_type_id"], name: "index_donations_on_bid_type_id", using: :btree
   add_index "donations", ["donation_category_id"], name: "index_donations_on_donation_category_id", using: :btree
-  add_index "donations", ["donor_id"], name: "index_donations_on_donor_id", using: :btree
+
+  create_table "donors", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "auction_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "donors", ["auction_id"], name: "index_donors_on_auction_id", using: :btree
+  add_index "donors", ["user_id"], name: "index_donors_on_user_id", using: :btree
 
   create_table "memberships", force: :cascade do |t|
     t.integer  "user_id",         null: false
@@ -167,10 +185,13 @@ ActiveRecord::Schema.define(version: 20151020041941) do
   add_foreign_key "auctions", "organizations"
   add_foreign_key "bids", "donations"
   add_foreign_key "bids", "users", column: "bidder_id"
+  add_foreign_key "donation_donors", "donations"
+  add_foreign_key "donation_donors", "donors"
   add_foreign_key "donations", "auctions"
   add_foreign_key "donations", "bid_types"
   add_foreign_key "donations", "donation_categories"
-  add_foreign_key "donations", "users", column: "donor_id"
+  add_foreign_key "donors", "auctions"
+  add_foreign_key "donors", "users"
   add_foreign_key "memberships", "organizations"
   add_foreign_key "memberships", "users"
 end

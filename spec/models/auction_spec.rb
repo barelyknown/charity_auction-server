@@ -11,6 +11,8 @@ RSpec.describe Auction do
     it { is_expected.to have_attribute :name }
 
     it { is_expected.to have_attribute :donation_window_ends_at }
+
+    it { is_expected.to have_many :donors }
   end
 
   describe "relationships" do

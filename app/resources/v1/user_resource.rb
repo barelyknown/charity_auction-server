@@ -8,9 +8,11 @@ module V1
 
     has_many :memberships
 
+    has_many :donors
+
     class << self
       def creatable_fields(context)
-        super - [:memberships]
+        super - [:memberships, :donors]
       end
 
       alias_method :updatable_fields, :creatable_fields

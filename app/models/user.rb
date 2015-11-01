@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
 
   has_many :memberships
 
+  has_many :donors
+
   validates :name, presence: true
 
   validates :mobile_phone_number, presence: true, uniqueness: true

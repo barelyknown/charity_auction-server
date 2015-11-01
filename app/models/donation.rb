@@ -5,13 +5,11 @@ class Donation < ActiveRecord::Base
 
   belongs_to :donation_category
 
-  belongs_to :donor, class_name: "User"
-
   has_many :bids
 
-  enum fulfillment_type: [:item, :certificate]
+  has_many :donation_donors
 
-  validates :donor, presence: true
+  enum fulfillment_type: [:item, :certificate]
 
   validates :auction, presence: true
 

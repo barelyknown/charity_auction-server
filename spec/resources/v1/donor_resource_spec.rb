@@ -1,26 +1,15 @@
 module V1
-  RSpec.describe DonationResource do
+  RSpec.describe DonorResource do
 
     let :creatable_fields do
       [
-        :title,
-        :description,
-        :quantity,
-        :redemption_window_starts_at,
-        :redemption_window_ends_at,
-        :estimated_value_amount,
-        :minimum_bid_amount,
-        :display_description,
-        :admin_follow_up_needed,
-        :fulfillment_type,
-        :bid_type,
-        :donation_category,
+        :user,
         :auction
       ].sort
     end
 
     subject do
-      described_class.new Donation.new, {}
+      described_class.new Donor.new, {}
     end
 
     it "has the correct creatable fields" do
