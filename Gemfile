@@ -25,3 +25,7 @@ group :development, :test do
   gem "rspec_api_documentation"
   gem "shoulda-matchers", "~> 3.0"
 end
+
+group :production do
+  gem "rails_12factor"
+end
