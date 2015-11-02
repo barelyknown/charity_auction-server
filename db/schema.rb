@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151101231937) do
+ActiveRecord::Schema.define(version: 20151102123258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -169,16 +169,15 @@ ActiveRecord::Schema.define(version: 20151101231937) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                null: false
-    t.string   "mobile_phone_number", null: false
-    t.string   "email_address",       null: false
-    t.string   "physical_address",    null: false
+    t.string   "mobile_phone_number"
+    t.string   "email_address"
+    t.string   "physical_address"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.string   "password_digest",     null: false
+    t.string   "password_digest"
   end
 
-  add_index "users", ["email_address"], name: "index_users_on_email_address", unique: true, using: :btree
-  add_index "users", ["mobile_phone_number"], name: "index_users_on_mobile_phone_number", unique: true, using: :btree
+  add_index "users", ["email_address"], name: "index_users_on_email_address", unique: true, where: "(email_address IS NOT NULL)", using: :btree
 
   add_foreign_key "auction_admins", "auctions"
   add_foreign_key "auction_admins", "users"

@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include ActiveModel::SecurePassword::InstanceMethodsOnActivation
+
   has_many :donations, foreign_key: :donor_id
 
   has_many :bids, foreign_key: :bidder_id
@@ -9,11 +11,7 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
 
-  validates :mobile_phone_number, presence: true, uniqueness: true
+  validates :mobile_phone_number, uniqueness: true, allow_blank: true
 
-  validates :email_address, presence: true, uniqueness: true
-
-  validates :physical_address, presence: true
-
-  has_secure_password
+  validates :email_address, uniqueness: true, allow_blank: true
 end
