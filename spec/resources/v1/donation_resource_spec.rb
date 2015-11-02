@@ -14,7 +14,8 @@ module V1
         :fulfillment_type,
         :bid_type,
         :donation_category,
-        :auction
+        :auction,
+        :notes
       ].sort
     end
 

@@ -46,6 +46,10 @@ RSpec.resource "Donations" do
       The way in which the item will be fulfilled. Valid values are 'item' and 'certificate'.
     DESC
 
+    parameter "notes", <<-DESC, scope: :attributes
+      Notes about the auction managed by and visible to the administrators of the auction.
+    DESC
+
     parameter "bid-type", <<-DESC, scope: :relationships
       The type of bid that will be conducted for this item.
     DESC
@@ -102,6 +106,10 @@ RSpec.resource "Donations" do
 
     let "fulfillment-type" do
       "certificate"
+    end
+
+    let "notes" do
+      "This should be a big one!"
     end
 
     let "bid-type" do

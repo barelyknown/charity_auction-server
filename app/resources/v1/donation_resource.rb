@@ -9,6 +9,7 @@ module V1
     attribute :minimum_bid_amount
     attribute :display_description
     attribute :fulfillment_type
+    attribute :notes
     has_one :bid_type
     has_one :auction
     has_one :donation_category

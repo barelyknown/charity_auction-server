@@ -8,7 +8,8 @@ RSpec.describe Donation do
     "estimated_value_amount",
     "minimum_bid_amount",
     "display_description",
-    "fulfillment_type"
+    "fulfillment_type",
+    "notes"
   ].each do |attribute|
     it { is_expected.to have_attribute attribute }
   end
