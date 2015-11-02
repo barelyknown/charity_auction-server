@@ -1,6 +1,6 @@
 namespace :seed do
   task :bid_types => :environment do
-    ["live","silent","teacup"].each do |name|
+    ["live","silent","teacup","fixed-price","heads-or-tails"].each do |name|
       BidType.find_or_create_by!(name: name)
     end
   end
