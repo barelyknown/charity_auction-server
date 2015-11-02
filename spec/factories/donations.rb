@@ -10,7 +10,6 @@ FactoryGirl.define do
     estimated_value_amount 10000
     minimum_bid_amount 3000
     display_description "Pictures of the group in the hot tub."
-    admin_follow_up_needed false
     fulfillment_type "certificate"
   end
 end

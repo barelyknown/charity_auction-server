@@ -11,7 +11,6 @@ module V1
         :estimated_value_amount,
         :minimum_bid_amount,
         :display_description,
-        :admin_follow_up_needed,
         :fulfillment_type,
         :bid_type,
         :donation_category,

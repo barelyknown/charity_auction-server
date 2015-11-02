@@ -42,10 +42,6 @@ RSpec.resource "Donations" do
       The minimum bid amount per unit of the donated item.
     DESC
 
-    parameter "admin-follow-up-needed", <<-DESC, scope: :attributes
-      Does an auction administrator need to follow up with the donor about the item?
-    DESC
-
     parameter "fulfillment-type", <<-DESC, scope: :attributes
       The way in which the item will be fulfilled. Valid values are 'item' and 'certificate'.
     DESC
@@ -102,10 +98,6 @@ RSpec.resource "Donations" do
 
     let "minimum-bid-amount" do
       3_000
-    end
-
-    let "admin-follow-up-needed" do
-      true
     end
 
     let "fulfillment-type" do

@@ -8,7 +8,6 @@ RSpec.describe Donation do
     "estimated_value_amount",
     "minimum_bid_amount",
     "display_description",
-    "admin_follow_up_needed",
     "fulfillment_type"
   ].each do |attribute|
     it { is_expected.to have_attribute attribute }
@@ -70,10 +69,6 @@ RSpec.describe Donation do
     subject.minimum_bid_amount = 1
     subject.valid?
     expect(subject.errors[:minimum_bid_dollars]).to be_empty
-  end
-
-  it "defaults the admin_follow_up_needed to false" do
-    expect(subject.admin_follow_up_needed).to eq false
   end
 
   it "has the fulfillment_type enum definition" do

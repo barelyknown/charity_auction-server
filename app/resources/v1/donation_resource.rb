@@ -8,7 +8,6 @@ module V1
     attribute :estimated_value_amount
     attribute :minimum_bid_amount
     attribute :display_description
-    attribute :admin_follow_up_needed
     attribute :fulfillment_type
     has_one :bid_type
     has_one :auction
