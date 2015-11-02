@@ -13,16 +13,16 @@ RSpec.resource "Users" do
     parameter "name", <<-DESC, scope: :attributes, required: true
       The name of the user.
     DESC
-    parameter "mobile-phone-number", <<-DESC, scope: :attributes, required: true
+    parameter "mobile-phone-number", <<-DESC, scope: :attributes
       The mobile phone of the user.
     DESC
-    parameter "email-address", <<-DESC, scope: :attributes, required: true
+    parameter "email-address", <<-DESC, scope: :attributes
       The email address of the user.
     DESC
-    parameter "password", <<-DESC, scope: :attributes, required: true
+    parameter "password", <<-DESC, scope: :attributes
       The password for the user.
     DESC
-    parameter "physical-address", <<-DESC, scope: :attributes, required: true
+    parameter "physical-address", <<-DESC, scope: :attributes
       The physical address of the user.
     DESC
   end
