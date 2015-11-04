@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104160909) do
+ActiveRecord::Schema.define(version: 20151104171655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,9 +126,11 @@ ActiveRecord::Schema.define(version: 20151104160909) do
     t.datetime "updated_at",                  null: false
     t.integer  "donation_category_id"
     t.text     "notes"
+    t.integer  "bid_group_id"
   end
 
   add_index "donations", ["auction_id"], name: "index_donations_on_auction_id", using: :btree
+  add_index "donations", ["bid_group_id"], name: "index_donations_on_bid_group_id", using: :btree
   add_index "donations", ["bid_type_id"], name: "index_donations_on_bid_type_id", using: :btree
   add_index "donations", ["donation_category_id"], name: "index_donations_on_donation_category_id", using: :btree
 
@@ -236,6 +238,7 @@ ActiveRecord::Schema.define(version: 20151104160909) do
   add_foreign_key "donation_donors", "donations"
   add_foreign_key "donation_donors", "donors"
   add_foreign_key "donations", "auctions"
+  add_foreign_key "donations", "bid_groups"
   add_foreign_key "donations", "bid_types"
   add_foreign_key "donations", "donation_categories"
   add_foreign_key "donors", "auctions"

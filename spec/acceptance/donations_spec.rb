@@ -54,6 +54,10 @@ RSpec.resource "Donations" do
       The type of bid that will be conducted for this item.
     DESC
 
+    parameter "bid-group", <<-DESC, scope: :relationships
+      The bid group that the donation is part of.
+    DESC
+
     parameter "donation-category", <<-DESC, scope: :relationships
       The type of the donation category.
     DESC
@@ -117,6 +121,19 @@ RSpec.resource "Donations" do
         data: {
           id: BidType.first.id.to_s,
           type: "bid-types"
+        }
+      }
+    end
+
+    let! :bid_group_model do
+      FactoryGirl.create(:bid_group, auction: persisted_auction)
+    end
+
+    let "bid-group" do
+      {
+        data: {
+          id: bid_group_model.id.to_s,
+          type: 'bid-groups'
         }
       }
     end

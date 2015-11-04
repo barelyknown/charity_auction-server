@@ -5,6 +5,8 @@ class Donation < ActiveRecord::Base
 
   belongs_to :donation_category
 
+  belongs_to :bid_group
+
   has_many :bids
 
   has_many :donation_donors

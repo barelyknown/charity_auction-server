@@ -15,7 +15,8 @@ module V1
         :bid_type,
         :donation_category,
         :auction,
-        :notes
+        :notes,
+        :bid_group
       ].sort
     end
 

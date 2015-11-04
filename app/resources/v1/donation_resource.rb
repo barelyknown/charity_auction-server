@@ -12,6 +12,7 @@ module V1
     attribute :notes
     has_one :bid_type
     has_one :auction
+    has_one :bid_group
     has_one :donation_category
     has_many :donation_donors
 
