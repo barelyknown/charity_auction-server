@@ -9,6 +9,7 @@ gem "doorkeeper"
 gem "jsonapi-resources", ">= 0.6.0"
 gem "rack-cors", :require => "rack/cors"
 gem "apitome"
+gem "ranked-model"
 
 group :development, :test do
   gem "byebug"

@@ -10,6 +10,8 @@ class Auction < ActiveRecord::Base
 
   has_many :bidders
 
+  has_many :bid_groups
+
   validate :_starts_at_after_donation_window_ends_at
 
   validate :_ends_at_after_starts_at

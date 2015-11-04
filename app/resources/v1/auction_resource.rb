@@ -17,9 +17,11 @@ module V1
 
     has_many :bidders
 
+    has_many :bid_groups
+
     class << self
       def creatable_fields(context)
-        super - [:donations, :donors, :tickets, :bidders]
+        super - [:donations, :donors, :tickets, :bidders, :bid_groups]
       end
       alias_method :updatable_fields, :creatable_fields
     end

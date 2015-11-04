@@ -14,7 +14,7 @@ module V1
     end
 
     it "has the correct fetchable fields" do
-      expect(subject.fetchable_fields.sort).to eq [:id, :created_at, :updated_at, :name].sort
+      expect(subject.fetchable_fields.sort).to eq [:id, :created_at, :updated_at, :name, :bid_groups, :donations].sort
     end
   end
 end

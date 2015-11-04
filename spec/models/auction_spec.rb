@@ -17,6 +17,8 @@ RSpec.describe Auction do
     it { is_expected.to have_many :tickets }
 
     it { is_expected.to have_many :bidders }
+
+    it { is_expected.to have_many :bid_groups }
   end
 
   describe "relationships" do

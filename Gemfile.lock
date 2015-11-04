@@ -106,6 +106,8 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
+    ranked-model (0.4.0)
+      activerecord (>= 3.1.12)
     rspec (3.3.0)
       rspec-core (~> 3.3.0)
       rspec-expectations (~> 3.3.0)
@@ -165,6 +167,7 @@ DEPENDENCIES
   rack-cors
   rails (= 4.2.4)
   rails_12factor
+  ranked-model
   rspec-rails (~> 3.0)
   rspec_api_documentation
   shoulda-matchers (~> 3.0)

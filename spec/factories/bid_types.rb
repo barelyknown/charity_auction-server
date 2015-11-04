@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :bid_type do
-    name "MyString"
+    sequence(:name) { |n| "Bid Type #{n}" }
   end
 end
