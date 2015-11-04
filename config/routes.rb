@@ -12,5 +12,6 @@ Rails.application.routes.draw do
     jsonapi_resources :donors
     jsonapi_resources :donation_donors
     jsonapi_resources :tickets
+    jsonapi_resources :bidders
   end
 end

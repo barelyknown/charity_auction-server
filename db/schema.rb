@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104125433) do
+ActiveRecord::Schema.define(version: 20151104135314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,24 @@ ActiveRecord::Schema.define(version: 20151104125433) do
   end
 
   add_index "bid_types", ["name"], name: "index_bid_types_on_name", unique: true, using: :btree
+
+  create_table "bidder_tickets", force: :cascade do |t|
+    t.integer  "bidder_id",  null: false
+    t.integer  "ticket_id",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "bidder_tickets", ["bidder_id"], name: "index_bidder_tickets_on_bidder_id", using: :btree
+  add_index "bidder_tickets", ["ticket_id"], name: "index_bidder_tickets_on_ticket_id", using: :btree
+
+  create_table "bidders", force: :cascade do |t|
+    t.integer  "auction_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "bidders", ["auction_id"], name: "index_bidders_on_auction_id", using: :btree
 
   create_table "bids", force: :cascade do |t|
     t.integer  "donation_id",    null: false
@@ -195,6 +213,9 @@ ActiveRecord::Schema.define(version: 20151104125433) do
   add_foreign_key "auction_admins", "auctions"
   add_foreign_key "auction_admins", "users"
   add_foreign_key "auctions", "organizations"
+  add_foreign_key "bidder_tickets", "bidders"
+  add_foreign_key "bidder_tickets", "tickets"
+  add_foreign_key "bidders", "auctions"
   add_foreign_key "bids", "donations"
   add_foreign_key "bids", "users", column: "bidder_id"
   add_foreign_key "donation_donors", "donations"

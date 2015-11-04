@@ -3,6 +3,10 @@ RSpec.describe Ticket do
 
   it { is_expected.to belong_to :auction }
 
+  it { is_expected.to have_many :bidder_tickets }
+
+  it { is_expected.to have_many(:bidders).through(:bidder_tickets) }
+
   it { is_expected.to have_attribute :price }
 
   it { is_expected.to have_attribute :number }
@@ -29,5 +33,10 @@ RSpec.describe Ticket do
     subject = Ticket.new(auction: auction)
     subject.run_callbacks(:validation)
     expect(subject.number).to eq "1"
+  end
+
+  it "creates a bidder for the ticket after commit on create" do
+    subject = FactoryGirl.create(:ticket)
+    expect(subject.bidders.count).to eq 1
   end
 end

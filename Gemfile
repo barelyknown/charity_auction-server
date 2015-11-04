@@ -24,6 +24,7 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "rspec_api_documentation"
   gem "shoulda-matchers", "~> 3.0"
+  gem "test_after_commit"
 end
 
 group :production do
