@@ -19,6 +19,8 @@ class Ticket < ActiveRecord::Base
 
   after_commit :_create_bidder, on: [:create]
 
+  before_destroy :_destroy_bidder_tickets
+
   def _set_number_unless_present
     return if number.present? || auction.nil?
 
@@ -31,5 +33,14 @@ class Ticket < ActiveRecord::Base
 
   def _create_bidder
     Bidder.create!(auction: auction, tickets: [self]) and reload
+  end
+
+  def _destroy_bidder_tickets
+    bidder_tickets.each do |bidder_ticket|
+      bidder_ticket.destroy
+      if BidderTicket.where(ticket: bidder_ticket.id).count == 0
+        bidder_ticket.bidder.destroy
+      end
+    end
   end
 end

@@ -39,4 +39,11 @@ RSpec.describe Ticket do
     subject = FactoryGirl.create(:ticket)
     expect(subject.bidders.count).to eq 1
   end
+
+  it "can be destroyed even if it has bidder tickets" do
+    subject = FactoryGirl.create(:ticket)
+    bidder = subject.bidders.first
+    expect{subject.destroy}.not_to raise_error
+    expect(Bidder.find_by(id: bidder.id)).to be_nil
+  end
 end

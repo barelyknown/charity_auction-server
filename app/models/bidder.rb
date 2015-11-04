@@ -1,7 +1,7 @@
 class Bidder < ActiveRecord::Base
   belongs_to :auction
 
-  has_many :bidder_tickets
+  has_many :bidder_tickets, dependent: :destroy
 
   has_many :tickets, through: :bidder_tickets
 
