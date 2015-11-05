@@ -1,15 +1,11 @@
 class Donation < ActiveRecord::Base
   belongs_to :auction
 
-  belongs_to :bid_type
-
   belongs_to :donation_category
 
-  belongs_to :bid_group
-
-  has_many :bids
-
   has_many :donation_donors
+
+  has_one :auction_item
 
   enum fulfillment_type: [:item, :certificate]
 

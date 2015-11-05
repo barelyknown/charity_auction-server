@@ -12,11 +12,9 @@ module V1
         :minimum_bid_amount,
         :display_description,
         :fulfillment_type,
-        :bid_type,
         :donation_category,
         :auction,
         :notes,
-        :bid_group
       ].sort
     end
 
@@ -33,7 +31,7 @@ module V1
     end
 
     it "has the correct fetchable fields" do
-      expect(subject.fetchable_fields.sort).to eq (creatable_fields + [:id, :created_at, :updated_at, :donation_donors]).sort
+      expect(subject.fetchable_fields.sort).to eq (creatable_fields + [:id, :created_at, :updated_at, :donation_donors, :auction_item]).sort
     end
   end
 end

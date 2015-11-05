@@ -14,5 +14,6 @@ Rails.application.routes.draw do
     jsonapi_resources :tickets
     jsonapi_resources :bidders
     jsonapi_resources :bid_groups
+    jsonapi_resources :auction_items
   end
 end

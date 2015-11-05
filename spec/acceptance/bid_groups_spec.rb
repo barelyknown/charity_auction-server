@@ -7,11 +7,6 @@ RSpec.resource "Bid Groups" do
     FactoryGirl.create(:auction)
   end
 
-  before do
-    CharityAuctionServer::Application.load_tasks
-    Rake::Task["seed:bid_types"].execute
-  end
-
   shared_context "parameters" do
     parameter "type", "The type of the resource. Always 'bid-groups'.", required: true
 
@@ -21,10 +16,6 @@ RSpec.resource "Bid Groups" do
 
     parameter "auction", <<-DESC, scope: :relationships, required: true
       The auction for which the ticket is valid.
-    DESC
-
-    parameter "bid-type", <<-DESC, scope: :relationships, required: true
-      The bid type of the bid group.
     DESC
 
     parameter "name", <<-DESC, scope: :attributes
@@ -61,15 +52,6 @@ RSpec.resource "Bid Groups" do
         data: {
           id: auction_model.id.to_s,
           type: "auctions"
-        }
-      }
-    end
-
-    let "bid-type" do
-      {
-        data: {
-          id: BidType.first.id.to_s,
-          type: "bid-types"
         }
       }
     end

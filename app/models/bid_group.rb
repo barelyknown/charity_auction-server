@@ -1,13 +1,9 @@
 class BidGroup < ActiveRecord::Base
   include RankedModel
 
-  belongs_to :bid_type
-
   belongs_to :auction
 
-  has_many :donations
-
-  validates :bid_type, presence: true
+  has_many :auction_items
 
   validates :auction, presence: true
 

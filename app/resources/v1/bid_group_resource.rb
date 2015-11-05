@@ -1,8 +1,7 @@
 module V1
   class BidGroupResource < BaseResource
     has_one :auction
-    has_one :bid_type
-    has_many :donations
+    has_many :auction_items
     attribute :name
     attribute :description
     attribute :sequence_position
@@ -10,7 +9,7 @@ module V1
 
     class << self
       def creatable_fields(context)
-        super - [:donations]
+        super - [:auction_items]
       end
 
       alias_method :updatable_fields, :creatable_fields

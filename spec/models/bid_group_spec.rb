@@ -1,9 +1,5 @@
 RSpec.describe BidGroup do
-  it { is_expected.to belong_to :bid_type }
-
   it { is_expected.to belong_to :auction }
-
-  it { is_expected.to validate_presence_of :bid_type }
 
   it { is_expected.to validate_presence_of :auction }
 
@@ -11,7 +7,7 @@ RSpec.describe BidGroup do
 
   it { is_expected.to have_attribute :description }
 
-  it { is_expected.to have_many :donations }
+  it { is_expected.to have_many :auction_items }
 
   it "enables bid groups to be ranked by sequence" do
     auction = FactoryGirl.create(:auction)

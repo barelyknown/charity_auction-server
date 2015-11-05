@@ -14,13 +14,11 @@ RSpec.describe Donation do
     it { is_expected.to have_attribute attribute }
   end
 
-  it { is_expected.to belong_to :bid_type }
-
   it { is_expected.to belong_to :donation_category }
 
-  it { is_expected.to belong_to :bid_group }
-
   it { is_expected.to have_many :donation_donors }
+
+  it { is_expected.to have_one :auction_item }
 
   ["auction"].each do |required_relationship|
     it { is_expected.to belong_to required_relationship }

@@ -25,6 +25,8 @@ RSpec.describe Auction do
     it { is_expected.to have_many :donations }
 
     it { is_expected.to belong_to :organization }
+
+    it { is_expected.to have_many :auction_items }
   end
 
   describe "validations" do

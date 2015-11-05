@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104171655) do
+ActiveRecord::Schema.define(version: 20151105020125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,20 @@ ActiveRecord::Schema.define(version: 20151104171655) do
 
   add_index "auction_admins", ["auction_id"], name: "index_auction_admins_on_auction_id", using: :btree
   add_index "auction_admins", ["user_id"], name: "index_auction_admins_on_user_id", using: :btree
+
+  create_table "auction_items", force: :cascade do |t|
+    t.integer  "auction_id",   null: false
+    t.integer  "donation_id",  null: false
+    t.integer  "bid_type_id",  null: false
+    t.integer  "bid_group_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "auction_items", ["auction_id"], name: "index_auction_items_on_auction_id", using: :btree
+  add_index "auction_items", ["bid_group_id"], name: "index_auction_items_on_bid_group_id", using: :btree
+  add_index "auction_items", ["bid_type_id"], name: "index_auction_items_on_bid_type_id", using: :btree
+  add_index "auction_items", ["donation_id"], name: "index_auction_items_on_donation_id", using: :btree
 
   create_table "auctions", force: :cascade do |t|
     t.datetime "starts_at"
@@ -41,7 +55,6 @@ ActiveRecord::Schema.define(version: 20151104171655) do
   add_index "auctions", ["organization_id"], name: "index_auctions_on_organization_id", using: :btree
 
   create_table "bid_groups", force: :cascade do |t|
-    t.integer  "bid_type_id", null: false
     t.string   "name"
     t.text     "description"
     t.integer  "sequence"
@@ -51,7 +64,6 @@ ActiveRecord::Schema.define(version: 20151104171655) do
   end
 
   add_index "bid_groups", ["auction_id"], name: "index_bid_groups_on_auction_id", using: :btree
-  add_index "bid_groups", ["bid_type_id"], name: "index_bid_groups_on_bid_type_id", using: :btree
 
   create_table "bid_types", force: :cascade do |t|
     t.string   "name",       null: false
@@ -115,7 +127,6 @@ ActiveRecord::Schema.define(version: 20151104171655) do
     t.text     "description"
     t.integer  "quantity"
     t.integer  "auction_id",                  null: false
-    t.integer  "bid_type_id"
     t.datetime "redemption_window_starts_at"
     t.datetime "redemption_window_ends_at"
     t.integer  "estimated_value_amount"
@@ -126,12 +137,9 @@ ActiveRecord::Schema.define(version: 20151104171655) do
     t.datetime "updated_at",                  null: false
     t.integer  "donation_category_id"
     t.text     "notes"
-    t.integer  "bid_group_id"
   end
 
   add_index "donations", ["auction_id"], name: "index_donations_on_auction_id", using: :btree
-  add_index "donations", ["bid_group_id"], name: "index_donations_on_bid_group_id", using: :btree
-  add_index "donations", ["bid_type_id"], name: "index_donations_on_bid_type_id", using: :btree
   add_index "donations", ["donation_category_id"], name: "index_donations_on_donation_category_id", using: :btree
 
   create_table "donors", force: :cascade do |t|
@@ -227,9 +235,12 @@ ActiveRecord::Schema.define(version: 20151104171655) do
 
   add_foreign_key "auction_admins", "auctions"
   add_foreign_key "auction_admins", "users"
+  add_foreign_key "auction_items", "auctions"
+  add_foreign_key "auction_items", "bid_groups"
+  add_foreign_key "auction_items", "bid_types"
+  add_foreign_key "auction_items", "donations"
   add_foreign_key "auctions", "organizations"
   add_foreign_key "bid_groups", "auctions"
-  add_foreign_key "bid_groups", "bid_types"
   add_foreign_key "bidder_tickets", "bidders"
   add_foreign_key "bidder_tickets", "tickets"
   add_foreign_key "bidders", "auctions"
@@ -238,8 +249,6 @@ ActiveRecord::Schema.define(version: 20151104171655) do
   add_foreign_key "donation_donors", "donations"
   add_foreign_key "donation_donors", "donors"
   add_foreign_key "donations", "auctions"
-  add_foreign_key "donations", "bid_groups"
-  add_foreign_key "donations", "bid_types"
   add_foreign_key "donations", "donation_categories"
   add_foreign_key "donors", "auctions"
   add_foreign_key "donors", "users"

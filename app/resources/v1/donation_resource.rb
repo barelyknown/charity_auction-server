@@ -10,15 +10,18 @@ module V1
     attribute :display_description
     attribute :fulfillment_type
     attribute :notes
-    has_one :bid_type
     has_one :auction
-    has_one :bid_group
+    has_one :auction_item
     has_one :donation_category
     has_many :donation_donors
 
+    def auction_item_id
+      auction_item.try(:id)
+    end
+
     class << self
       def creatable_fields(context)
-        super - [:donation_donors]
+        super - [:donation_donors, :auction_item]
       end
 
       alias_method :updatable_fields, :creatable_fields
