@@ -5,6 +5,8 @@ class BidGroup < ActiveRecord::Base
 
   belongs_to :auction
 
+  has_many :donations
+
   validates :bid_type, presence: true
 
   validates :auction, presence: true

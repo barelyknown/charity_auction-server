@@ -11,6 +11,8 @@ RSpec.describe BidGroup do
 
   it { is_expected.to have_attribute :description }
 
+  it { is_expected.to have_many :donations }
+
   it "enables bid groups to be ranked by sequence" do
     auction = FactoryGirl.create(:auction)
     subjects = 2.times.map do |n|
