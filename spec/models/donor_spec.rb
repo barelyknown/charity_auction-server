@@ -6,4 +6,8 @@ RSpec.describe Donor do
   it { is_expected.to validate_presence_of :user }
 
   it { is_expected.to validate_presence_of :auction }
+
+  it { is_expected.to have_many :donation_donors }
+
+  it { is_expected.to have_many(:donations).through(:donation_donors) }
 end
