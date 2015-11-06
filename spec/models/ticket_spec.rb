@@ -11,6 +11,19 @@ RSpec.describe Ticket do
 
   it { is_expected.to have_attribute :number }
 
+  it "defaults to create_bidder_automatically" do
+    expect(subject.create_bidder_automatically).to eq true
+  end
+
+  context "when create_bidder_automatically = false" do
+    before do
+      subject.create_bidder_automatically = false
+    end
+    it "does not create a bidder automatically" do
+      expect{FactoryGirl.create(:ticket, create_bidder_automatically: false)}.to change{Bidder.count}.by(0)
+    end
+  end
+
   it "validates that the price is greater than or equal to 0" do
     subject.price = -1
     subject.valid?

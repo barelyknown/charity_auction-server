@@ -1,8 +1,9 @@
 - name: Specialty Services
 - name: Food/Drink
-- name: Vacation Homes
+- name: Vacation
 - name: Dinners and Theme Parties
 - name: Home and Garden
 - name: Artwork
-- name: Entertainment and Tickets
+- name: Entertainment
 - name: Jewelry/Collectibles
+- name: Other

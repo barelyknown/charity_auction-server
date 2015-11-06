@@ -15,3 +15,5 @@
 spec/examples.txt
 
 doc
+/db/seeds/bidders.csv
+/db/seeds/auction_items.csv

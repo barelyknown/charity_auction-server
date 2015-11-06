@@ -5,6 +5,8 @@ class Donation < ActiveRecord::Base
 
   has_many :donation_donors
 
+  has_many :donors, through: :donation_donors
+
   has_one :auction_item
 
   enum fulfillment_type: [:item, :certificate]

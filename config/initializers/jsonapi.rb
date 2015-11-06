@@ -23,13 +23,13 @@ JSONAPI.configure do |config|
   config.raise_if_parameters_not_allowed = true
 
   # :none, :offset, :paged, or a custom paginator name
-  config.default_paginator = :offset
+  # config.default_paginator = :offset
 
   # Output pagination links at top level
-  config.top_level_links_include_pagination = true
+  # config.top_level_links_include_pagination = true
 
-  config.default_page_size = 50
-  config.maximum_page_size = 200
+  # config.default_page_size = 200
+  # config.maximum_page_size = 1_000
 
   # Output the record count in top level meta data for find operations
   config.top_level_meta_include_record_count = true

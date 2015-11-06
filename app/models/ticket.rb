@@ -21,6 +21,12 @@ class Ticket < ActiveRecord::Base
 
   before_destroy :_destroy_bidder_tickets
 
+  attr_accessor :create_bidder_automatically
+
+  def create_bidder_automatically
+    @create_bidder_automatically.nil? ? true : @create_bidder_automatically
+  end
+
   def _set_number_unless_present
     return if number.present? || auction.nil?
 
@@ -32,6 +38,8 @@ class Ticket < ActiveRecord::Base
   end
 
   def _create_bidder
+    return unless create_bidder_automatically
+
     Bidder.create!(auction: auction, tickets: [self]) and reload
   end
 

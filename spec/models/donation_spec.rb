@@ -17,6 +17,8 @@ RSpec.describe Donation do
 
   it { is_expected.to have_many :donation_donors }
 
+  it { is_expected.to have_many(:donors).through(:donation_donors) }
+
   it { is_expected.to have_one :auction_item }
 
   ["auction"].each do |required_relationship|
