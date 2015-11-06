@@ -6,7 +6,6 @@ module V1
     attribute :redemption_window_starts_at
     attribute :redemption_window_ends_at
     attribute :estimated_value_amount
-    attribute :minimum_bid_amount
     attribute :display_description
     attribute :fulfillment_type
     attribute :notes

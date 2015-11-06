@@ -37,6 +37,11 @@ RSpec.resource "Auction Items" do
     parameter "bid-group", <<-DESC, scope: :relationships, required: true
       The bid group of the auction item.
     DESC
+
+    parameter "minimum-bid-amount", <<-DESC, scope: :attributes
+      The minimum amount of the bid. If the bid-type is 'fixed-price'
+      then the minimum amount of the bid must be greater than 0.
+    DESC
   end
 
   post "/v1/auction-items" do
@@ -81,6 +86,10 @@ RSpec.resource "Auction Items" do
           type: "bid-groups"
         }
       }
+    end
+
+    let "minimum-bid-amount" do
+      10
     end
 
     example_request "POST /v1/auction-items" do

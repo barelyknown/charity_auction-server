@@ -9,7 +9,6 @@ module V1
         :redemption_window_starts_at,
         :redemption_window_ends_at,
         :estimated_value_amount,
-        :minimum_bid_amount,
         :display_description,
         :fulfillment_type,
         :donation_category,

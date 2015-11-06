@@ -1,5 +1,7 @@
 module V1
   class AuctionItemResource < BaseResource
+    attribute :minimum_bid_amount
+
     has_one :auction
 
     has_one :donation

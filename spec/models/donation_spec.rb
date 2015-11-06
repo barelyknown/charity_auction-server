@@ -6,7 +6,6 @@ RSpec.describe Donation do
     "redemption_window_starts_at",
     "redemption_window_ends_at",
     "estimated_value_amount",
-    "minimum_bid_amount",
     "display_description",
     "fulfillment_type",
     "notes"
@@ -58,18 +57,6 @@ RSpec.describe Donation do
     subject.estimated_value_amount = 0
     subject.valid?
     expect(subject.errors[:estimated_value_amount]).to be_empty
-  end
-
-  it "validates that the minimum_bid_amount is either nil or greater than 0" do
-    subject.minimum_bid_amount = nil
-    subject.valid?
-    expect(subject.errors[:minimum_bid_amount]).to be_empty
-    subject.minimum_bid_amount = 0
-    subject.valid?
-    expect(subject.errors[:minimum_bid_amount]).to include "must be greater than 0"
-    subject.minimum_bid_amount = 1
-    subject.valid?
-    expect(subject.errors[:minimum_bid_dollars]).to be_empty
   end
 
   it "has the fulfillment_type enum definition" do

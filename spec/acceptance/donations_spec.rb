@@ -38,10 +38,6 @@ RSpec.resource "Donations" do
       The estimated value per unit of the donated item.
     DESC
 
-    parameter "minimum-bid-amount", <<-DESC, scope: :attributes
-      The minimum bid amount per unit of the donated item.
-    DESC
-
     parameter "fulfillment-type", <<-DESC, scope: :attributes
       The way in which the item will be fulfilled. Valid values are 'item' and 'certificate'.
     DESC
@@ -94,10 +90,6 @@ RSpec.resource "Donations" do
 
     let "estimated-value-amount" do
       10_000
-    end
-
-    let "minimum-bid-amount" do
-      3_000
     end
 
     let "fulfillment-type" do

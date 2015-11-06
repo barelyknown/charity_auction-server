@@ -13,8 +13,6 @@ class Donation < ActiveRecord::Base
 
   validates :quantity, numericality: { greater_than: 0 }, allow_nil: true
 
-  validates :minimum_bid_amount, numericality: { greater_than: 0 }, allow_nil: true
-
   validate :_redemption_window_ends_at_greater_than_starts_at
 
   validates :estimated_value_amount, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
