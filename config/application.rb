@@ -40,8 +40,7 @@ module CharityAuctionServer
 
         resource '*',
           :headers => :any,
-          :methods => [:get, :post, :delete, :put, :patch, :options, :head],
-          :max_age => 0
+          :methods => [:get, :post, :delete, :put, :patch, :options, :head]
       end
     end
   end
