@@ -6,8 +6,8 @@ RSpec.describe AuctionItemLoader do
 
   let :csv do
     <<-ROWS.strip_heredoc
-      donor_names,donation_title,donation_description,donation_estimated_value_amount,donation_category_name,bid_type_name,bid_group_name,donation_notes,donation_quantity,minimum_bid_amount
-      "Sean Devine,Theresa Devine","Night out","...on the town",1000,Food/Drink,silent,Silent - Early,"much work to do!",1,30
+      donor_names,donation_title,donation_description,donation_estimated_value_amount,donation_category_name,bid_type_name,bid_group_name,donation_notes,donation_quantity,minimum_bid_amount,auction_item_number
+      "Sean Devine,Theresa Devine","Night out","...on the town",1000,Food/Drink,silent,Silent - Early,"much work to do!",1,30,1
     ROWS
   end
 
@@ -28,5 +28,7 @@ RSpec.describe AuctionItemLoader do
     expect(auction.donations.count).to eq 1
     expect(auction.donations.first.donors.count).to eq 2
     expect(auction.auction_items.count).to eq 1
+    auction_item = auction.auction_items.last
+    expect(auction_item.number).to eq "1"
   end
 end

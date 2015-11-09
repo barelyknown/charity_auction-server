@@ -32,7 +32,8 @@ class AuctionItemLoader
           donation: donation,
           bid_type: bid_type,
           bid_group: bid_group,
-          minimum_bid_amount: row["minimum_bid_amount"].present? ? row["minimum_bid_amount"].to_i : nil
+          minimum_bid_amount: row["minimum_bid_amount"].to_s.strip.present? ? row["minimum_bid_amount"].to_i : nil,
+          number: row["auction_item_number"]
         )
       end
     end

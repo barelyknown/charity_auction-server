@@ -30,6 +30,10 @@ RSpec.resource "Bid Groups" do
       The sequence of the bid group within the auction.
       Based on the options allowed by the rank-model gem.
     DESC
+
+    parameter "group-by-donation-category", <<-DESC, scope: :attributes
+      Whether the bid group should be grouped by donation category in the program.
+    DESC
   end
 
   post "/v1/bid-groups" do
@@ -45,6 +49,10 @@ RSpec.resource "Bid Groups" do
 
     let "sequence-position" do
       "first"
+    end
+
+    let "group-by-donation-category" do
+      true
     end
 
     let "auction" do

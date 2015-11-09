@@ -6,6 +6,7 @@ module V1
     attribute :description
     attribute :sequence_position
     attribute :sequence
+    attribute :group_by_donation_category
 
     class << self
       def creatable_fields(context)

@@ -42,6 +42,10 @@ RSpec.resource "Auction Items" do
       The minimum amount of the bid. If the bid-type is 'fixed-price'
       then the minimum amount of the bid must be greater than 0.
     DESC
+
+    parameter "number", <<-DESC, scope: :attributes
+      The number of the auction item. Must be unique per auction.
+    DESC
   end
 
   post "/v1/auction-items" do
@@ -90,6 +94,10 @@ RSpec.resource "Auction Items" do
 
     let "minimum-bid-amount" do
       10
+    end
+
+    let "number" do
+      "2"
     end
 
     example_request "POST /v1/auction-items" do

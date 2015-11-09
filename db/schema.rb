@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151106173901) do
+ActiveRecord::Schema.define(version: 20151109162952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20151106173901) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.decimal  "minimum_bid_amount"
+    t.integer  "sequence"
+    t.string   "number"
   end
 
   add_index "auction_items", ["auction_id"], name: "index_auction_items_on_auction_id", using: :btree
@@ -59,9 +61,10 @@ ActiveRecord::Schema.define(version: 20151106173901) do
     t.string   "name"
     t.text     "description"
     t.integer  "sequence"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "auction_id",  null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.integer  "auction_id",                                 null: false
+    t.boolean  "group_by_donation_category", default: false
   end
 
   add_index "bid_groups", ["auction_id"], name: "index_bid_groups_on_auction_id", using: :btree

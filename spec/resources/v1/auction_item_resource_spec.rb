@@ -7,7 +7,8 @@ module V1
         :donation,
         :bid_group,
         :bid_type,
-        :minimum_bid_amount
+        :minimum_bid_amount,
+        :number
       ].sort
     end
 

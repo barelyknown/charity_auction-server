@@ -7,7 +7,8 @@ module V1
         :name,
         :description,
         :sequence_position,
-        :sequence
+        :sequence,
+        :group_by_donation_category
       ].sort
     end
 

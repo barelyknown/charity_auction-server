@@ -8,6 +8,4 @@ class BidGroup < ActiveRecord::Base
   validates :auction, presence: true
 
   ranks :sequence, with_same: :auction_id
-
-  default_scope { rank(:sequence) }
 end
