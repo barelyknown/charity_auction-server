@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109162952) do
+ActiveRecord::Schema.define(version: 20151113145101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,17 +97,16 @@ ActiveRecord::Schema.define(version: 20151109162952) do
   add_index "bidders", ["auction_id"], name: "index_bidders_on_auction_id", using: :btree
 
   create_table "bids", force: :cascade do |t|
-    t.integer  "donation_id",    null: false
-    t.integer  "bidder_id",      null: false
-    t.integer  "amount_dollars", null: false
-    t.integer  "quantity",       null: false
-    t.datetime "placed_at",      null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "auction_item_id",                 null: false
+    t.integer  "bidder_id",                       null: false
+    t.boolean  "winner",          default: false
+    t.decimal  "amount",                          null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
+  add_index "bids", ["auction_item_id"], name: "index_bids_on_auction_item_id", using: :btree
   add_index "bids", ["bidder_id"], name: "index_bids_on_bidder_id", using: :btree
-  add_index "bids", ["donation_id"], name: "index_bids_on_donation_id", using: :btree
 
   create_table "donation_categories", force: :cascade do |t|
     t.string   "name",       null: false
@@ -248,8 +247,8 @@ ActiveRecord::Schema.define(version: 20151109162952) do
   add_foreign_key "bidder_tickets", "bidders"
   add_foreign_key "bidder_tickets", "tickets"
   add_foreign_key "bidders", "auctions"
-  add_foreign_key "bids", "donations"
-  add_foreign_key "bids", "users", column: "bidder_id"
+  add_foreign_key "bids", "auction_items"
+  add_foreign_key "bids", "bidders"
   add_foreign_key "donation_donors", "donations"
   add_foreign_key "donation_donors", "donors"
   add_foreign_key "donations", "auctions"
