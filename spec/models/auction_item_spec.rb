@@ -17,6 +17,8 @@ RSpec.describe AuctionItem do
 
   it { is_expected.to have_attribute :number }
 
+  it { is_expected.to have_many :bids }
+
   it "validates that the number is unique for the auction" do
     original = FactoryGirl.create(:auction_item)
     duplicate = AuctionItem.new(auction: original.auction, number: original.number)

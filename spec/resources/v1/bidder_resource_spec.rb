@@ -6,7 +6,7 @@ module V1
     end
 
     let :creatable_fields do
-      [:auction, :tickets]
+      [:auction, :tickets, :number]
     end
 
     it "has the correct creatable fields" do
@@ -18,7 +18,7 @@ module V1
     end
 
     it "has the correct fetchable fields" do
-      expect(subject.fetchable_fields.sort).to eq [:id, :created_at, :updated_at, :auction, :tickets].sort
+      expect(subject.fetchable_fields.sort).to eq [:id, :created_at, :updated_at, :auction, :tickets, :payments, :bids, :number].sort
     end
   end
 end

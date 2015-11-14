@@ -1,19 +1,17 @@
 module V1
-  RSpec.describe AuctionItemResource do
+  RSpec.describe PaymentResource do
 
     let :creatable_fields do
       [
-        :auction,
-        :donation,
-        :bid_group,
-        :bid_type,
-        :minimum_bid_amount,
-        :number
+        :bidder,
+        :amount,
+        :payment_method,
+        :auction
       ].sort
     end
 
     subject do
-      described_class.new AuctionItem.new, {}
+      described_class.new Payment.new, {}
     end
 
     it "has the correct creatable fields" do
@@ -25,7 +23,7 @@ module V1
     end
 
     it "has the correct fetchable fields" do
-      expect(subject.fetchable_fields.sort).to eq (creatable_fields + [:id, :created_at, :updated_at, :bids]).sort
+      expect(subject.fetchable_fields.sort).to eq (creatable_fields + [:id, :created_at, :updated_at, :unapplied_amount, :applied_amount]).sort
     end
   end
 end

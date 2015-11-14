@@ -11,20 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151113145101) do
+ActiveRecord::Schema.define(version: 20151113181030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "auction_admins", force: :cascade do |t|
-    t.integer  "user_id",    null: false
-    t.integer  "auction_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "auction_admins", ["auction_id"], name: "index_auction_admins_on_auction_id", using: :btree
-  add_index "auction_admins", ["user_id"], name: "index_auction_admins_on_user_id", using: :btree
 
   create_table "auction_items", force: :cascade do |t|
     t.integer  "auction_id",         null: false
@@ -68,6 +58,17 @@ ActiveRecord::Schema.define(version: 20151113145101) do
   end
 
   add_index "bid_groups", ["auction_id"], name: "index_bid_groups_on_auction_id", using: :btree
+
+  create_table "bid_payments", force: :cascade do |t|
+    t.integer  "bid_id",     null: false
+    t.integer  "payment_id", null: false
+    t.decimal  "amount",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "bid_payments", ["bid_id"], name: "index_bid_payments_on_bid_id", using: :btree
+  add_index "bid_payments", ["payment_id"], name: "index_bid_payments_on_payment_id", using: :btree
 
   create_table "bid_types", force: :cascade do |t|
     t.string   "name",       null: false
@@ -211,6 +212,18 @@ ActiveRecord::Schema.define(version: 20151113145101) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.integer  "bidder_id"
+    t.decimal  "amount",         null: false
+    t.integer  "payment_method"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "auction_id",     null: false
+  end
+
+  add_index "payments", ["auction_id"], name: "index_payments_on_auction_id", using: :btree
+  add_index "payments", ["bidder_id"], name: "index_payments_on_bidder_id", using: :btree
+
   create_table "tickets", force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.decimal  "price",      null: false
@@ -236,14 +249,14 @@ ActiveRecord::Schema.define(version: 20151113145101) do
 
   add_index "users", ["email_address"], name: "index_users_on_email_address", unique: true, where: "(email_address IS NOT NULL)", using: :btree
 
-  add_foreign_key "auction_admins", "auctions"
-  add_foreign_key "auction_admins", "users"
   add_foreign_key "auction_items", "auctions"
   add_foreign_key "auction_items", "bid_groups"
   add_foreign_key "auction_items", "bid_types"
   add_foreign_key "auction_items", "donations"
   add_foreign_key "auctions", "organizations"
   add_foreign_key "bid_groups", "auctions"
+  add_foreign_key "bid_payments", "bids"
+  add_foreign_key "bid_payments", "payments"
   add_foreign_key "bidder_tickets", "bidders"
   add_foreign_key "bidder_tickets", "tickets"
   add_foreign_key "bidders", "auctions"
@@ -257,6 +270,8 @@ ActiveRecord::Schema.define(version: 20151113145101) do
   add_foreign_key "donors", "users"
   add_foreign_key "memberships", "organizations"
   add_foreign_key "memberships", "users"
+  add_foreign_key "payments", "auctions"
+  add_foreign_key "payments", "bidders"
   add_foreign_key "tickets", "auctions"
   add_foreign_key "tickets", "users"
 end

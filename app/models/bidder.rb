@@ -5,6 +5,10 @@ class Bidder < ActiveRecord::Base
 
   has_many :tickets, through: :bidder_tickets
 
+  has_many :bids
+
+  has_many :payments
+
   validates :auction, presence: true
 
   validate :_tickets_are_not_empty

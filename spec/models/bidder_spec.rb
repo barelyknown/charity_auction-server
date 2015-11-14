@@ -5,11 +5,15 @@ RSpec.describe Bidder do
 
   it { is_expected.to have_many :bidder_tickets }
 
+  it { is_expected.to have_many :bids }
+
   it { is_expected.to have_many(:tickets).through(:bidder_tickets) }
 
   it { is_expected.to have_attribute(:number) }
 
   it { is_expected.to validate_presence_of :number }
+
+  it { is_expected.to have_many :payments }
 
   it "validates that the number is unique for the auction" do
     original = FactoryGirl.create(:bidder)

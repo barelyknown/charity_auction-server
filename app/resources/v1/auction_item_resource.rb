@@ -12,9 +12,11 @@ module V1
 
     has_one :bid_group
 
+    has_many :bids
+
     class << self
       def creatable_fields(context)
-        super
+        super - [:bids]
       end
       alias_method :updatable_fields, :creatable_fields
     end

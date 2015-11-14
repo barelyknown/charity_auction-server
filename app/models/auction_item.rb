@@ -12,6 +12,8 @@ class AuctionItem < ActiveRecord::Base
 
   belongs_to :bid_group
 
+  has_many :bids
+
   validates :number, uniqueness: { scope: :auction_id }, presence: true
 
   before_validation :_set_number_unless_present
