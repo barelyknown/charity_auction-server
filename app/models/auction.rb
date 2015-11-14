@@ -14,6 +14,8 @@ class Auction < ActiveRecord::Base
 
   has_many :auction_items
 
+  has_many :payments
+
   validate :_starts_at_after_donation_window_ends_at
 
   validate :_ends_at_after_starts_at

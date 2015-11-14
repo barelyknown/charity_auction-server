@@ -18,3 +18,4 @@ doc
 /db/seeds/bidders.csv
 /db/seeds/auction_items.csv
 mydb.dump
+latest.dump

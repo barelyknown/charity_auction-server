@@ -6,7 +6,8 @@ module V1
         :user,
         :auction,
         :price,
-        :number
+        :number,
+        :create_bidder_automatically
       ].sort
     end
 
@@ -23,7 +24,7 @@ module V1
     end
 
     it "has the correct fetchable fields" do
-      expect(subject.fetchable_fields.sort).to eq (creatable_fields + [:id, :created_at, :updated_at, :bidders]).sort
+      expect(subject.fetchable_fields.sort).to eq (creatable_fields + [:id, :created_at, :updated_at, :bidders] - [:create_bidder_automatically]).sort
     end
   end
 end

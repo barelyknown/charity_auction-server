@@ -2,6 +2,7 @@ module V1
   class TicketResource < BaseResource
     attribute :price
     attribute :number
+    attribute :create_bidder_automatically
     has_one :auction
     has_one :user
     has_many :bidders
@@ -11,7 +12,13 @@ module V1
         super - [:bidders]
       end
 
-      alias_method :updatable_fields, :creatable_fields
+      def updatable_fields(context)
+        creatable_fields(context)
+      end
+    end
+
+    def fetchable_fields
+      super - [:create_bidder_automatically]
     end
   end
 end
